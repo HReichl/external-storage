@@ -20,7 +20,7 @@ spec:
               mountPath: /persistentvolumes
           env:
             - name: PROVISIONER_NAME
-              value: fuseim.pri/ifs
+              value: nfs.dynamic/ifs
             - name: NFS_SERVER
               value: ip-10-0-2-206.ec2.internal
             - name: NFS_PATH
