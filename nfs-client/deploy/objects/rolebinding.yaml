@@ -5,8 +5,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: nfs-client-provisioner
-    # replace with namespace where provisioner is deployed
-    namespace: default
+    namespace: nfs-client-provisioner
 roleRef:
   kind: Role
   name: leader-locking-nfs-client-provisioner
