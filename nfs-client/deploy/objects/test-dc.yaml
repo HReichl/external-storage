@@ -1,0 +1,37 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  labels:
+    app: test-rwx
+  name: test-rwx
+spec:
+  replicas: 1
+  selector:
+    app: test-rwx
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: test-rwx
+    spec:
+      containers:
+      - name: test-rwx
+        image: gcr.io/google_containers/busybox:1.24
+        imagePullPolicy: IfNotPresent
+        command:
+          - "/bin/sh"
+        args:
+          - "-c"
+          - "sleep 3600"
+        volumeMounts:
+        - name: busybox-data
+          mountPath: /mnt
+      restartPolicy: Always
+      volumes:
+        - name: busybox-data
+          persistentVolumeClaim:
+            claimName: test-pvc-rwx
+  triggers:
+  - type: ConfigChange
+
